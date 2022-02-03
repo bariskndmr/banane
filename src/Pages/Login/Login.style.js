@@ -18,13 +18,4 @@ export default StyleSheet.create({
     flex: 2,
     margin: 10,
   },
-  textButtonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 5,
-  },
-  textButton: {
-    textDecorationLine: 'underline',
-    fontWeight: 'bold',
-  },
 });

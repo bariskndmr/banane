@@ -1,23 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
 
 import Styles from './Login.style';
-
-const TextButton = ({onPress}) => {
-  return (
-    <View style={Styles.textButtonContainer}>
-      <Text>Don't you have account? </Text>
-      <TouchableOpacity onPress={onPress}>
-        <Text style={Styles.textButton}>Sign up!</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-
+import TextButton from 'components/TextButton';
 const Login = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -25,7 +14,7 @@ const Login = ({navigation}) => {
   const handleSigin = () => {
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => navigation.navigate('SignupPage'))
+      .then(() => navigation.navigate('HomePage'))
       .catch(error => Alert.alert('Error', error.message));
   };
 
@@ -51,7 +40,11 @@ const Login = ({navigation}) => {
           placeholder="Password..."
           label="Password"
         />
-        <TextButton onPress={sumbitSignup} />
+        <TextButton
+          text="Don't you have account?"
+          buttonText="Sign up"
+          onPress={sumbitSignup}
+        />
         <Button onPress={handleSigin} text="Sign in" />
       </View>
     </View>
