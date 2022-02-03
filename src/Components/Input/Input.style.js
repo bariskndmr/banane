@@ -2,14 +2,16 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    borderWidth: 1,
-    alignItems: 'center',
-    padding: 10,
     marginVertical: 10,
-    borderRadius: 10,
   },
-  text: {
+  label: {
     fontWeight: 'bold',
-    fontSize: 15,
+    paddingLeft: 10,
+    marginBottom: 5,
+  },
+  input: {
+    backgroundColor: '#eceff1',
+    padding: 10,
+    borderRadius: 5,
   },
 });
