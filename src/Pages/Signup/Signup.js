@@ -1,19 +1,22 @@
 import Input from 'components/Input';
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
+import {Formik} from 'formik';
 
 import LoginStyles from 'Pages/Login/Login.style';
 import Button from 'components/Button';
 import TextButton from 'components/TextButton';
 
-const Signup = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const initialFormValues = {
+  email: '',
+  password: '',
+};
 
-  const handleSignup = () => {
+const Signup = ({navigation}) => {
+  const handleSignup = formValues => {
     auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(formValues.email, formValues.password)
       .then(response => {
         if (response) {
           return Alert.alert('Success', 'Kayıt Başarılı!', [
@@ -33,26 +36,30 @@ const Signup = ({navigation}) => {
       <View style={LoginStyles.titleContainer}>
         <Text style={LoginStyles.title}>Signup</Text>
       </View>
-      <View style={LoginStyles.inputContainer}>
-        <Input
-          onChange={text => setEmail(text)}
-          value={email}
-          placeholder="E-Mail..."
-          label="E-Mail"
-        />
-        <Input
-          onChange={text => setPassword(text)}
-          value={password}
-          placeholder="Password..."
-          label="Password"
-        />
-        <TextButton
-          text="Already do you have a account?"
-          buttonText="Sign in!"
-          onPress={handleSignin}
-        />
-        <Button text="Sign Up" onPress={handleSignup} />
-      </View>
+      <Formik initialValues={initialFormValues} onSubmit={handleSignup}>
+        {({values, handleChange, handleSubmit}) => (
+          <View style={LoginStyles.inputContainer}>
+            <Input
+              onChange={handleChange('email')}
+              value={values.email}
+              placeholder="E-Mail..."
+              label="E-Mail"
+            />
+            <Input
+              onChange={handleChange('password')}
+              value={values.password}
+              placeholder="Password..."
+              label="Password"
+            />
+            <TextButton
+              text="Already do you have a account?"
+              buttonText="Sign in!"
+              onPress={handleSignin}
+            />
+            <Button text="Sign Up" onPress={handleSubmit} />
+          </View>
+        )}
+      </Formik>
     </View>
   );
 };
