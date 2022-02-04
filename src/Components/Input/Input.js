@@ -12,6 +12,8 @@ const Input = ({label, placeholder, value, onChange}) => {
         value={value}
         placeholder={placeholder}
         onChangeText={onChange}
+        autoCapitalize="none"
+        autoCorrect={false}
       />
     </View>
   );

@@ -1,30 +1,36 @@
 import Input from 'components/Input';
-import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {Formik} from 'formik';
+import {showMessage} from 'react-native-flash-message';
 
-import LoginStyles from 'Pages/Login/Login.style';
+import AuthErrorMessageParser from 'src/utils/authErrorMessageParser';
 import Button from 'components/Button';
 import TextButton from 'components/TextButton';
+
+import LoginStyles from 'Pages/Login/Login.style';
 
 const initialFormValues = {
   email: '',
   password: '',
+  repassword: '',
 };
 
 const Signup = ({navigation}) => {
-  const handleSignup = formValues => {
-    auth()
-      .createUserWithEmailAndPassword(formValues.email, formValues.password)
-      .then(response => {
-        if (response) {
-          return Alert.alert('Success', 'Kayıt Başarılı!', [
-            {text: 'OK!', onPress: () => navigation.navigate('LoginPage')},
-          ]);
-        }
-      })
-      .catch(error => Alert.alert('Error', error.message));
+  const [loading, setLoading] = useState(false);
+  const handleSignup = async ({email, password}) => {
+    try {
+      setLoading(true);
+      await auth().createUserWithEmailAndPassword(email, password);
+      setLoading(false);
+    } catch (error) {
+      showMessage({
+        message: AuthErrorMessageParser(error.code),
+        type: 'warning',
+      });
+      setLoading(false);
+    }
   };
 
   const handleSignin = () => {
@@ -51,12 +57,18 @@ const Signup = ({navigation}) => {
               placeholder="Password..."
               label="Password"
             />
+            <Input
+              onChange={handleChange('repassword')}
+              value={values.repassword}
+              placeholder="Re-Password..."
+              label="Re-Password"
+            />
             <TextButton
               text="Already do you have a account?"
               buttonText="Sign in!"
               onPress={handleSignin}
             />
-            <Button text="Sign Up" onPress={handleSubmit} />
+            <Button text="Sign Up" onPress={handleSubmit} loading={loading} />
           </View>
         )}
       </Formik>

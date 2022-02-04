@@ -16,6 +16,7 @@
           ".json"
         ],
         "alias": {
+          "src": "./src",
           "pages": "./src/Pages",
           "hooks": "./src/Hooks",
           "navigations": "./src/Navigations",

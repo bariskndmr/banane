@@ -1,8 +1,10 @@
-import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {Formik} from 'formik';
+import {showMessage} from 'react-native-flash-message';
 
+import AuthErrorMessageParser from 'src/utils/authErrorMessageParser';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import TextButton from 'components/TextButton';
@@ -15,11 +17,25 @@ const initialFormValues = {
 };
 
 const Login = ({navigation}) => {
-  const handleSignin = formValues => {
-    auth()
-      .signInWithEmailAndPassword(formValues.email, formValues.password)
-      .then(() => navigation.navigate('HomePage'))
-      .catch(error => Alert.alert('Error', error.message));
+  const [loading, setLoading] = useState(false);
+
+  const handleSignin = async ({email, password}) => {
+    try {
+      setLoading(true);
+      await auth().signInWithEmailAndPassword(email, password);
+      showMessage({
+        message: 'Login Success!',
+        type: 'success',
+      });
+      navigation.navigate('HomePage');
+      setLoading(false);
+    } catch (error) {
+      showMessage({
+        message: AuthErrorMessageParser(error.code),
+        type: 'warning',
+      });
+      setLoading(false);
+    }
   };
 
   const sumbitSignup = () => {
@@ -51,7 +67,7 @@ const Login = ({navigation}) => {
               buttonText="Sign up"
               onPress={sumbitSignup}
             />
-            <Button onPress={handleSubmit} text="Sign in" />
+            <Button onPress={handleSubmit} text="Sign in" loading={loading} />
           </View>
         )}
       </Formik>
