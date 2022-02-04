@@ -9,6 +9,9 @@ const AuthErrorMessageParser = errorCode => {
     case 'auth/user-not-found':
       return "User didn't find ";
 
+    case 'auth/email-already-in-use':
+      return 'The email already in use ';
+
     default:
       return errorCode;
   }

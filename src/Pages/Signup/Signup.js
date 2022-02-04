@@ -19,11 +19,22 @@ const initialFormValues = {
 
 const Signup = ({navigation}) => {
   const [loading, setLoading] = useState(false);
-  const handleSignup = async ({email, password}) => {
+  const handleSignup = async ({email, password, repassword}) => {
+    if (password !== repassword) {
+      showMessage({
+        message: 'Passwords do not match!',
+        type: 'danger',
+      });
+      return;
+    }
     try {
       setLoading(true);
-      await auth().createUserWithEmailAndPassword(email, password);
-      setLoading(false);
+      await auth().createUserWithEmailAndPassword(email, repassword);
+      navigation.navigate('LoginPage');
+      showMessage({
+        message: 'User created!',
+        type: 'success',
+      });
     } catch (error) {
       showMessage({
         message: AuthErrorMessageParser(error.code),
@@ -56,12 +67,14 @@ const Signup = ({navigation}) => {
               value={values.password}
               placeholder="Password..."
               label="Password"
+              isSecure
             />
             <Input
               onChange={handleChange('repassword')}
               value={values.repassword}
               placeholder="Re-Password..."
               label="Re-Password"
+              isSecure
             />
             <TextButton
               text="Already do you have a account?"

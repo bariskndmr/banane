@@ -61,6 +61,7 @@ const Login = ({navigation}) => {
               value={values.password}
               placeholder="Password..."
               label="Password"
+              isSecure
             />
             <TextButton
               text="Don't you have account?"
