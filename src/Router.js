@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Login from 'pages/Login';
 import Signup from 'pages/Signup';
-import Home from 'pages/Home';
+import Messages from 'src/Pages/Messages';
 import FlashMessage from 'react-native-flash-message';
 
 const Stack = createNativeStackNavigator();
@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="MessagesPage">
         <Stack.Screen
           name="LoginPage"
           component={Login}
@@ -23,7 +23,14 @@ const Router = () => {
           component={Signup}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="HomePage" component={Home} />
+        <Stack.Screen
+          name="MessagesPage"
+          component={Messages}
+          options={{
+            title: 'Messages',
+            /* headerBackVisible: false, */
+          }}
+        />
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>

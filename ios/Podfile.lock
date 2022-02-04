@@ -394,6 +394,8 @@ PODS:
   - RNScreens (3.10.2):
     - React-Core
     - React-RCTImage
+  - RNVectorIcons (9.0.0):
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -456,6 +458,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -551,6 +554,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/auth"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -610,6 +615,7 @@ SPEC CHECKSUMS:
   RNFBApp: 16bdf8b75b84631513da3d5f5e2520a436ec9b29
   RNFBAuth: 7eb50d60c82b4a59018b0c7a1d4afdd1250eff74
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
+  RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

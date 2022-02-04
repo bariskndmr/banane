@@ -18,6 +18,7 @@
         "alias": {
           "src": "./src",
           "pages": "./src/Pages",
+          "utils": "./src/utils",
           "hooks": "./src/Hooks",
           "navigations": "./src/Navigations",
           "components": "./src/Components",

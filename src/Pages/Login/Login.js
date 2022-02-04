@@ -26,8 +26,9 @@ const Login = ({navigation}) => {
       showMessage({
         message: 'Login Success!',
         type: 'success',
+        duration: 1000,
       });
-      navigation.navigate('HomePage');
+      navigation.navigate('MessagesPage');
       setLoading(false);
     } catch (error) {
       showMessage({
