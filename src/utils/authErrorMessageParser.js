@@ -4,7 +4,7 @@ const AuthErrorMessageParser = errorCode => {
       return 'Invalid email';
 
     case 'auth/wrong-password':
-      return 'Invalid email';
+      return 'Wrong password';
 
     case 'auth/user-not-found':
       return "User didn't find ";
