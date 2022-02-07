@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {FlatList, SafeAreaView, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 
@@ -8,6 +8,7 @@ import ContentInputModal from 'src/Components/Modals/ContentInputModal';
 
 import Styles from './Messages.style';
 import parseContentData from 'src/utils/parseContentData';
+import MessageCard from 'src/Components/MessageCard';
 
 const Messages = () => {
   const [inputModalVisible, setInputModalVisible] = useState(false);
@@ -44,14 +45,13 @@ const Messages = () => {
     database().ref('messages/').push(contentObject);
   }
 
+  const renderContent = ({item}) => <MessageCard message={item} />;
+
   return (
     <SafeAreaView style={Styles.container}>
       <FloatingButton iconName="plus" onPress={handleInputToggle} />
       <View>
-        <FlatList
-          data={contentList}
-          renderItem={({item}) => <Text>{item.text}</Text>}
-        />
+        <FlatList data={contentList} renderItem={renderContent} />
       </View>
       <ContentInputModal
         visible={inputModalVisible}
