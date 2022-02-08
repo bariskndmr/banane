@@ -3,10 +3,13 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     margin: 10,
-    borderWidth: 1,
+    backgroundColor: '#ccc',
+    borderRadius: 10,
   },
   text: {
     fontWeight: '500',
+    color: 'black',
+    fontSize: 15,
   },
   headerContainer: {
     padding: 8,

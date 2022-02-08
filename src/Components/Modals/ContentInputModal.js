@@ -19,7 +19,7 @@ const ContentInputModal = ({visible, onClose, onSend}) => {
       <View style={Styles.container}>
         <View style={Styles.inputContainer}>
           <TextInput
-            placeholder="Darla hadi milleti..."
+            placeholder="Write somethings..."
             onChangeText={setText}
             multiline
           />

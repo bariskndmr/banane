@@ -20,22 +20,29 @@ const Login = ({navigation}) => {
   const [loading, setLoading] = useState(false);
 
   const handleSignin = async ({email, password}) => {
-    try {
-      setLoading(true);
-      await auth().signInWithEmailAndPassword(email, password);
+    if (!email && !password) {
       showMessage({
-        message: 'Login Success!',
-        type: 'success',
-        duration: 1000,
+        message: "Input's can't be empty!",
+        type: 'danger',
       });
-      navigation.navigate('MessagesPage');
-      setLoading(false);
-    } catch (error) {
-      showMessage({
-        message: AuthErrorMessageParser(error.code),
-        type: 'warning',
-      });
-      setLoading(false);
+    } else {
+      try {
+        setLoading(true);
+        await auth().signInWithEmailAndPassword(email, password);
+        showMessage({
+          message: 'Login Success!',
+          type: 'success',
+          duration: 1000,
+        });
+        navigation.navigate('MessagesPage');
+        setLoading(false);
+      } catch (error) {
+        showMessage({
+          message: AuthErrorMessageParser(error.code),
+          type: 'warning',
+        });
+        setLoading(false);
+      }
     }
   };
 
