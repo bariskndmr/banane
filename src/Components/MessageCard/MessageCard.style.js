@@ -4,11 +4,9 @@ export default StyleSheet.create({
   container: {
     margin: 10,
     borderWidth: 1,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
   },
   text: {
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
   headerContainer: {
     padding: 8,
