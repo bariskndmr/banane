@@ -1,4 +1,3 @@
-import Input from 'components/Input';
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
@@ -7,6 +6,7 @@ import {showMessage} from 'react-native-flash-message';
 
 import AuthErrorMessageParser from 'src/utils/authErrorMessageParser';
 import Button from 'components/Button';
+import Input from 'components/Input';
 import TextButton from 'components/TextButton';
 
 import LoginStyles from 'Pages/Login/Login.style';

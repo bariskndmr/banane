@@ -35,7 +35,6 @@ const Login = ({navigation}) => {
           duration: 1000,
         });
         navigation.navigate('MessagesPage');
-        setLoading(false);
       } catch (error) {
         showMessage({
           message: AuthErrorMessageParser(error.code),
