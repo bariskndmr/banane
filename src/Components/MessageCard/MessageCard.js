@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {formatDistance, parseISO} from 'date-fns';
 
 import Styles from './MessageCard.style';
 
-const MessageCard = ({message}) => {
+const MessageCard = ({message, onDislike}) => {
   const formattedDate = formatDistance(parseISO(message.date), new Date(), {
     addSuffix: true,
   });
@@ -17,6 +17,16 @@ const MessageCard = ({message}) => {
       </View>
       <View style={Styles.contentContainer}>
         <Text style={Styles.text}>{message.text}</Text>
+      </View>
+      <View style={Styles.dislikeContainer}>
+        <TouchableOpacity style={Styles.dislikeButton} onPress={onDislike}>
+          {!!message.dislike && (
+            <View style={Styles.dislikeCountContainer}>
+              <Text style={Styles.dislikeCounter}>{message.dislike}</Text>
+            </View>
+          )}
+          <Text>Big Deal!</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

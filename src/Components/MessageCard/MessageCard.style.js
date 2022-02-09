@@ -20,6 +20,29 @@ export default StyleSheet.create({
   },
   contentContainer: {
     padding: 10,
-    minHeight: 60,
+    minHeight: 30,
+  },
+  dislikeContainer: {
+    padding: 8,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  dislikeButton: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dislikeCountContainer: {
+    backgroundColor: '#ccc',
+    marginRight: 5,
+    padding: 2,
+    borderRadius: 10,
+  },
+  dislikeCounter: {
+    color: '#fff',
+    fontWeight: '800',
   },
 });

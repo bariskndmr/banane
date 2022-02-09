@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, TextInput} from 'react-native';
 import Modal from 'react-native-modal';
 
@@ -8,6 +8,11 @@ import Styles from './ContentInputModal.style';
 
 const ContentInputModal = ({visible, onClose, onSend}) => {
   const [text, setText] = useState(null);
+
+  // bir sonraki tıklama da bir önceki içeriği tekrar gönderdiği için;
+  useEffect(() => {
+    setText(null);
+  }, [onSend]);
 
   return (
     <Modal
@@ -22,6 +27,8 @@ const ContentInputModal = ({visible, onClose, onSend}) => {
             placeholder="Write somethings..."
             onChangeText={setText}
             multiline
+            autoCapitalize="none"
+            autoCorrect={false}
           />
         </View>
         <View style={Styles.buttonContainer}>
